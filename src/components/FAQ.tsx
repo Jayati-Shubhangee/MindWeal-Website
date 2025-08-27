@@ -1,58 +1,110 @@
-import React, { useState } from 'react';
-import { Plus, Minus, HelpCircle, Phone, Mail, MessageSquare } from 'lucide-react';
+import React, { useState } from "react";
+import { Plus, Minus } from "lucide-react";
 
 const FAQ = () => {
   const [openItems, setOpenItems] = useState<number[]>([0]);
 
   const toggleItem = (index: number) => {
-    setOpenItems(prev => 
-      prev.includes(index) 
-        ? prev.filter(item => item !== index)
+    setOpenItems((prev) =>
+      prev.includes(index)
+        ? prev.filter((item) => item !== index)
         : [...prev, index]
     );
   };
 
+  // 🔹 Format text with *bold* inline
+  const formatBold = (text: string) => {
+    const parts = text.split(/(\*[^*]+\*)/g);
+    return parts.map((part, i) => {
+      if (part.startsWith("*") && part.endsWith("*")) {
+        return <strong key={i}>{part.slice(1, -1)}</strong>;
+      }
+      return <span key={i}>{part}</span>;
+    });
+  };
+
   const faqs = [
     {
-      question: "How do I know if therapy is right for me?",
-      answer: "Therapy can benefit anyone looking to improve their mental health, work through challenges, or enhance their personal growth. If you're experiencing persistent stress, anxiety, depression, relationship issues, or simply want to understand yourself better, therapy can provide valuable support and tools. At MindWeal, we offer a free 15-minute consultation to help you determine if our services align with your needs."
+      question: "What are the therapeutic services we offer?",
+      answer:
+        "We provide services in the areas of psychotherapy, \nPsychotherapy \nIndividual counseling \nRelationship counselling \nQueer affirmative therapy \nTrauma informed therapy \npsychological first aid\ncareer counselling and guidance \ncareer guidance for class 10th to 12th",
     },
     {
-      question: "What can I expect in my first therapy session?",
-      answer: "Your first session is an opportunity for us to get to know each other. We'll discuss what brought you to therapy, your goals, and any concerns you have. I'll explain my therapeutic approach and answer any questions about the process. This session is confidential and judgment-free, designed to help you feel comfortable and understood. We'll also discuss practical matters like session frequency and treatment planning."
+      question: "Why should you take therapy?",
+      answer:
+        "Therapy is for everyone whether you‘re navigating everyday stressors or working through deeper emotional or psychological challenges. It helps in enhancing self awareness, emotional resilience and over all quality of life, supporting personal growth across all areas. The improvement and growth happens at its own pace.",
     },
     {
-      question: "How long does therapy typically take?",
-      answer: "The duration of therapy varies greatly depending on individual needs, goals, and circumstances. Some people find significant benefit in a few sessions for specific issues, while others prefer longer-term therapy for deeper personal growth. We'll regularly check in about your progress and adjust our approach as needed. The goal is to provide you with tools and insights that serve you long after therapy ends."
+      question: "How would you know you need to take a session?",
+      answer:
+        "If you are feeling emotionally overwhelmed, emotionally stuck, experience changes in behavior or find it hard to cope with daily life situations, this may be a sign to seek support. Therapy will help you in gaining clarity, better coping mechanisms and emotional stability. ",
     },
     {
-      question: "Do you offer online therapy sessions?",
-      answer: "Yes, we offer both in-person and online therapy sessions to accommodate your preferences and lifestyle. Our online sessions use secure, HIPAA-compliant video platforms to ensure your privacy and confidentiality. Many clients find online therapy convenient and just as effective as in-person sessions. We can discuss which option might work best for you during our initial consultation."
+      question: "What happens during a session?",
+      answer:
+        "The sessions are conducted with utmost confidentiality and privacy. The client and therapist discuss the challenges that the client is facing currently and collaboratively work towards emotional and psychological wellbeing. Throughout the session the client and therapists set collaborative goals and trained therapists via therapeutic techniques help in achieving overall growth.",
     },
     {
-      question: "Are therapy sessions confidential?",
-      answer: "Absolutely. Confidentiality is a cornerstone of therapy and is protected by law. Everything discussed in our sessions remains private between you and me. There are very few exceptions, such as if there's an immediate risk of harm to yourself or others, or if required by court order. I'll explain these limitations clearly during our first session, and I'm always available to discuss any concerns about privacy."
+      question: "How many sessions do I need for therapy?",
+      answer:
+        "The client and therapist collaboratively decide the number of sessions that are required by the client. There are no fixed numbers as therapy is tailored for everyone. ",
     },
     {
-      question: "How much do therapy sessions cost?",
-      answer: "Session fees vary depending on the type of service (individual, couples, group therapy). We offer competitive rates and work with several insurance providers. We also provide a sliding scale for those with financial constraints because we believe mental health care should be accessible. Please contact us for detailed pricing information and to discuss payment options that work for your situation."
+      question: "How do I book a session?",
+      answer:
+        "You can book sessions via the website or connect with a psychologist and book through QR code. You can also book sessions through our social media handles like LinkedIn and Instagram. ",
     },
     {
-      question: "What types of therapy do you provide?",
-      answer: "I use an eclectic approach, drawing from various evidence-based therapies including Cognitive Behavioral Therapy (CBT), Dialectical Behavior Therapy (DBT), Client-Centered Therapy, and Mindfulness-Based interventions. The approach is tailored to your specific needs and preferences. We offer individual therapy, couples counseling, group sessions, and career counseling."
+      question: "What all mode therapy can be provided?",
+      answer:
+        "We currently only provide therapy through online platforms - via video conferencing, telephonic sessions and chat sessions. You may choose the mode that best suits your comfort and accessibility.",
     },
     {
-      question: "How do I schedule an appointment?",
-      answer: "Scheduling is easy! You can call us at +91 9599618238, send an email to mindweal.ps@gmail.com, or use our online booking system. We offer flexible scheduling including evening and weekend appointments. We'll work together to find a time that fits your schedule and ensure you can access the support you need when you need it."
+      question: "Is online therapy safe and confidential?",
+      answer:
+        "Yes, the therapy is both safe and confidential. All the information that you shared with your therapists will remain between both of you only. ",
     },
     {
-      question: "What if I need support between sessions?",
-      answer: "Your wellbeing is our priority. While we can't provide 24/7 crisis support, we do offer guidance on accessing appropriate resources between sessions. We'll discuss coping strategies and provide you with crisis resources during our work together. For immediate mental health emergencies, please contact emergency services or call the National Suicide Prevention Lifeline at 988."
+      question: "Do I need to provide all my information to my therapist?",
+      answer:
+        "Clients are required to fill the intake form with utmost honesty but within their comfort level. During the sessions the same behaviour is expected. The information of clients will remain confidential and private and wouldn't be shared without their consent. Transparency is a crucial element for this therapeutic alliance which is mutually respected both by clients and therapists.",
     },
     {
-      question: "Do you work with specific age groups or populations?",
-      answer: "I work primarily with adults (18+) and specialize in creating an inclusive, culturally sensitive environment. Our practice welcomes individuals from all backgrounds, orientations, and identities. We have experience with diverse populations and are committed to providing affirming care that respects your unique identity and experiences."
-    }
+      question: "How can I contact my therapist in case of an emergency? ",
+      answer:
+        "In case of emergency contact on official MindWeal number *9599618238*. Your therapist will connect with you as early as possible. In case of critical situations please contact a national helpline number like Telemanas *(1-800 891 14416)*, Mental Health Rehabilitation Helpline Kiran *(1800-599-0019)*, suicide helpline *(9152987821)*.",
+    },
+    {
+      question: "Can I change my therapist  if I want to? ",
+      answer:
+        "Yes, you can. The protocol for changing therapists is to first  discuss the issue with your current therapist and then if needed getting a second opinion with a different therapist. The current therapist can also assist you in connecting with other practitioners within or outside of the mindweal organization.",
+    },
+    {
+      question: "What is the cancellation policy?",
+      answer:
+        "The cancellation policy for pre-booked sessions entails reimbursement of only *50%* of the amount. There are no charges for complete termination of the sessions, However, clients are expected to inform their therapists the reasons for terminating. ",
+    },
+    {
+      question: "What are the fees of therapists? ",
+      answer:
+        "The therapist's fees vary as per the age criteria (Minors and adults) and duration of session. The fees also differ for different psychologists as per their experience and expertise. Mindweal therapists also provide intervention at a sliding scale on the practitioner’s discretion. Please discuss with your therapist.",
+    },
+    {
+      question: "Can I contact my therapist outside of the session too?",
+      answer:
+        "Direct contact with your therapist outside of scheduled sessions is not permitted. In case of emergency they can contact the number provided to them by the therapist. ",
+    },
+    {
+      question:
+        "Where can I access Internships, Bootcamps, Webinars and other programs MindWeal by Pihu Suri offers?",
+      answer:
+        "You can refer to the programs section in the navigation menu *(hyperlink to programs section)* or view any upcoming programs on the *Homepage*.",
+    },
+    {
+      question: "I want to be part of the team. How can I join?",
+      answer:
+        "If you are a psychology student looking to be part of the team, you can visit the internship section on the website and fill the form to apply for the same. If you are an early career psychologist  or even experienced psychologist you can join us by visiting the career section and apply for the same. You can also volunteer with us through our community outreach programs.\nCAREERS",
+    },
   ];
 
   return (
@@ -67,7 +119,8 @@ const FAQ = () => {
             Common Questions About Therapy
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Find answers to the most common questions about our services, therapy process, and what to expect at MindWeal.
+            Find answers to the most common questions about our services,
+            therapy process, and what to expect at MindWeal.
           </p>
         </div>
 
@@ -75,12 +128,14 @@ const FAQ = () => {
         <div className="space-y-4 mb-16">
           {faqs.map((faq, index) => {
             const isOpen = openItems.includes(index);
-            
+
             return (
               <div
                 key={index}
                 className={`bg-white rounded-2xl shadow-sm border transition-all duration-300 animate-slide-up ${
-                  isOpen ? 'shadow-lg border-mint-200' : 'border-gray-200 hover:border-mint-200'
+                  isOpen
+                    ? "shadow-lg border-mint-200"
+                    : "border-gray-200 hover:border-mint-200"
                 }`}
                 style={{ animationDelay: `${index * 0.05}s` }}
               >
@@ -92,7 +147,11 @@ const FAQ = () => {
                     <h3 className="text-lg font-semibold text-gray-900 pr-8 leading-relaxed">
                       {faq.question}
                     </h3>
-                    <div className={`flex-shrink-0 transition-all duration-300 ${isOpen ? 'rotate-180' : ''}`}>
+                    <div
+                      className={`flex-shrink-0 transition-all duration-300 ${
+                        isOpen ? "rotate-180" : ""
+                      }`}
+                    >
                       {isOpen ? (
                         <Minus className="h-5 w-5 text-mint-600" />
                       ) : (
@@ -101,72 +160,45 @@ const FAQ = () => {
                     </div>
                   </div>
                 </button>
-                
+
                 {isOpen && (
                   <div className="px-6 pb-6 animate-fade-in">
-                    <div className="border-t border-gray-100 pt-4">
-                      <p className="text-gray-600 leading-relaxed">
-                        {faq.answer}
-                      </p>
+                    <div className="text-gray-800 leading-relaxed">
+                      {faq.answer.split("\n").map((line, i) => {
+                        const content = formatBold(line);
+
+                        if (i === 0) {
+                          return (
+                            <p key={i} className="mb-2">
+                              {content}
+                            </p>
+                          );
+                        }
+
+                        if (
+                          line.toLowerCase().includes("psychotherapy") ||
+                          line.toLowerCase().includes("career counselling") ||
+                          line.toLowerCase().includes("careers")
+                        ) {
+                          return (
+                            <p key={i} className="font-bold text-black-700 mt-2">
+                              {content}
+                            </p>
+                          );
+                        }
+
+                        return (
+                          <ul key={i} className="list-disc ml-6 text-gray-600">
+                            <li>{content}</li>
+                          </ul>
+                        );
+                      })}
                     </div>
                   </div>
                 )}
               </div>
             );
           })}
-        </div>
-
-        {/* Contact Support */}
-        <div className="bg-white rounded-3xl shadow-lg p-8 md:p-12 animate-fade-in">
-          <div className="text-center mb-8">
-            <div className="bg-mint-100 p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-              <HelpCircle className="h-8 w-8 text-mint-600" />
-            </div>
-            <h3 className="text-3xl font-bold text-gray-900 mb-4">Still Have Questions?</h3>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              We're here to help you feel confident about starting your therapy journey. 
-              Reach out to us for personalized answers to your specific questions.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="text-center p-6 bg-gray-50 rounded-2xl hover:bg-mint-50 transition-colors">
-              <Phone className="h-8 w-8 text-mint-600 mx-auto mb-4" />
-              <h4 className="font-semibold text-gray-900 mb-2">Call Us</h4>
-              <p className="text-gray-600 text-sm mb-3">Speak directly with our team</p>
-              <a href="tel:+919599618238" className="text-mint-600 font-semibold hover:text-mint-700 transition-colors">
-                +91 9599618238
-              </a>
-            </div>
-
-            <div className="text-center p-6 bg-gray-50 rounded-2xl hover:bg-lavender-50 transition-colors">
-              <Mail className="h-8 w-8 text-lavender-600 mx-auto mb-4" />
-              <h4 className="font-semibold text-gray-900 mb-2">Email Us</h4>
-              <p className="text-gray-600 text-sm mb-3">Get detailed written responses</p>
-              <a href="mailto:mindweal.ps@gmail.com" className="text-lavender-600 font-semibold hover:text-lavender-700 transition-colors">
-                mindweal.ps@gmail.com
-              </a>
-            </div>
-
-            <div className="text-center p-6 bg-gray-50 rounded-2xl hover:bg-sage-50 transition-colors">
-              <MessageSquare className="h-8 w-8 text-sage-600 mx-auto mb-4" />
-              <h4 className="font-semibold text-gray-900 mb-2">Free Consultation</h4>
-              <p className="text-gray-600 text-sm mb-3">15-minute phone consultation</p>
-              <button className="text-sage-600 font-semibold hover:text-sage-700 transition-colors">
-                Schedule Now
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* Emergency Notice */}
-        <div className="mt-12 bg-red-50 border border-red-200 rounded-2xl p-6 text-center animate-fade-in">
-          <h4 className="font-semibold text-red-800 mb-2">Crisis Support Available</h4>
-          <p className="text-red-700 text-sm">
-            If you're experiencing a mental health emergency, please don't wait for a response. 
-            Call <a href="tel:988" className="font-bold underline hover:text-red-600">988 (Suicide & Crisis Lifeline)</a> 
-            or visit your nearest emergency room immediately.
-          </p>
         </div>
       </div>
     </section>
