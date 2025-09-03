@@ -4,17 +4,17 @@ const teamMembers = [
   {
     name: "Ms. PIHU SURI",
     role: "Founder & Lead Psychologist at MindWeal by Pihu Suri",
-    image: "/images/pihusuri.png", // replace with correct image path
+    image: "/pihusuri.png", // replace with correct image path
   },
   {
     name: "Ms. SHIVANGI SOBTI",
     role: "Counseling Psychologist Therapist at MindWeal by Pihu Suri",
-    image: "/images/shivangisobti.png", // replace with correct image path
+    image: "/shivangisobti.png", // replace with correct image path
   },
   {
     name: "Ms. AVNI KOHLI",
     role: "Counseling Psychologist Therapist at MindWeal",
-    image: "/images/avnikohli.png", // replace with correct image path
+    image: "/avnikohli.png", // replace with correct image path
   },
 ];
 

@@ -122,12 +122,12 @@ const Hero = () => {
     {/* LEFT: Two Images Side by Side */}
     <div className="grid grid-cols-2 gap-4 w-full">
       <img 
-        src="/MindWeal-Website/ex1.png" 
+        src="/ex1.png" 
         alt="Therapy Illustration 1" 
         className="rounded-2xl shadow-md w-full h-auto object-cover"
       />
       <img 
-        src="/MindWeal-Website/ex2.png" 
+        src="/ex2.png" 
         alt="Therapy Illustration 2" 
         className="rounded-2xl shadow-md w-full h-auto object-cover"
       />
@@ -136,7 +136,7 @@ const Hero = () => {
     {/* RIGHT: Logo + Buttons */}
     <div className="flex flex-col items-center text-center">
       <img 
-        src="/images/mwlogo.jpg" 
+        src="/mwlogo.jpg" 
         alt="MindWeal Logo" 
         className="w-24 sm:w-32 mb-4 object-contain"
       />
